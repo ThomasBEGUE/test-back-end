@@ -12,11 +12,11 @@ use Symfony\Component\Serializer\SerializerInterface;
  * Require ROLE_USER for *every* controller method in this class.
  * @IsGranted("ROLE_USER")
  */
-class AdminController extends AbstractController
+class UserController extends AbstractController
 {
 
     /**
-     * @Route("/user", name="admin_index")
+     * @Route("/user", name="user_index")
      */
     public function index(SerializerInterface $serializer)
     {
