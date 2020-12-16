@@ -39,6 +39,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", unique=true, nullable=true)
+     * @Groups({"auth_user"})
      */
     private $apiToken;
 
