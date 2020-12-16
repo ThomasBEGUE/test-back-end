@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -39,6 +41,20 @@ class User implements UserInterface
      * @ORM\Column(type="string", unique=true, nullable=true)
      */
     private $apiToken;
+
+    /**
+     * @ORM\Column(type="string")
+     * @Groups({"show_user"})
+     */
+    private $firstname;
+
+    /**
+     * @ORM\Column(type="string")
+     * @Groups({"show_user"})
+     */
+    private $lastname;
+
+
 
     public function getId(): ?int
     {
@@ -126,6 +142,28 @@ class User implements UserInterface
     public function setApiToken(string $apiToken): self
     {
         $this->apiToken = $apiToken;
+        return $this;
+    }
+
+    public function getFirstname(): string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname) : self
+    {
+        $this->firstname = $firstname;
+        return $this;
+    }
+
+    public function getLastname(): string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastname) : self
+    {
+        $this->lastname = $lastname;
         return $this;
     }
 }

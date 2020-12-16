@@ -22,6 +22,8 @@ class AdminFixtures extends Fixture
         $user = new User();
 
         $user->setEmail('unicorn974@yopmail.com');
+        $user->setFirstname('Roget');
+        $user->setLastname('JOYEUX');
         $user->setApiToken('unicorn');
 
         $password = $this->encoder->encodePassword($user, 'password');
