@@ -173,12 +173,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getApiTokenDuration()
+    public function getApiTokenDuration(): ?\DateTime
     {
         return $this->apiTokenDuration;
     }
 
-    public function setApiTokenDuration(\DateTime $apiTokenDuration) : self
+    public function setApiTokenDuration(?\DateTime $apiTokenDuration) : self
     {
         $this->apiTokenDuration = $apiTokenDuration;
         return $this;

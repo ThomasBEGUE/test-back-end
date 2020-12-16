@@ -51,9 +51,12 @@ class SecurityController extends AbstractController
         return JsonResponse::fromJsonString($json);
     }
 
-    public function logout(Request $request, SerializerInterface $serializer, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $entityManager)
+    /**
+     * @Route("/logout", name="logout", methods={"POST"})
+     */
+    public function logout(Request $request)
     {
-        
+        throw new \Exception('Don\'t forget to activate logout in security.yaml');
     }
 
 
