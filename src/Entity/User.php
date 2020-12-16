@@ -44,6 +44,11 @@ class User implements UserInterface
     private $apiToken;
 
     /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $apiTokenDuration;
+
+    /**
      * @ORM\Column(type="string")
      * @Groups({"show_user"})
      */
@@ -165,6 +170,17 @@ class User implements UserInterface
     public function setLastname(string $lastname) : self
     {
         $this->lastname = $lastname;
+        return $this;
+    }
+
+    public function getApiTokenDuration()
+    {
+        return $this->apiTokenDuration;
+    }
+
+    public function setApiTokenDuration(\DateTime $apiTokenDuration) : self
+    {
+        $this->apiTokenDuration = $apiTokenDuration;
         return $this;
     }
 }

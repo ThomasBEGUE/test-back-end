@@ -64,8 +64,11 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
         // Check credentials - e.g. make sure the password is valid.
         // In case of an API token, no credential check is needed.
 
+        $now = new \DateTime('now');
+    
         // Return `true` to cause authentication success
-        return true;
+        // return true;
+        return $user->getApiTokenDuration() >= $now;
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)

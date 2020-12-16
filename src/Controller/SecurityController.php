@@ -34,6 +34,14 @@ class SecurityController extends AbstractController
             return $this->json(['message' => 'authentification failed']);
         }
 
+        // Update token validation
+        $dateValidation = new \DateTime('now');
+        $dateValidation->add(new \DateInterval('PT1H'));
+        $user->setApiTokenDuration($dateValidation);
+
+        $entityManager->persist($user);
+        $entityManager->flush();
+
         $json = $serializer->serialize(
             $user,
             'json',
@@ -42,4 +50,11 @@ class SecurityController extends AbstractController
 
         return JsonResponse::fromJsonString($json);
     }
+
+    public function logout(Request $request, SerializerInterface $serializer, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $entityManager)
+    {
+        
+    }
+
+
 }
