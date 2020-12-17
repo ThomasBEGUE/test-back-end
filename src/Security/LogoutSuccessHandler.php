@@ -32,6 +32,7 @@ class LogoutSuccessHandler implements LogoutSuccessHandlerInterface
             return new JsonResponse(['message' => 'logout failed']);
         }
 
+        $user->setApiToken(null);
         $user->setApiTokenDuration(null);
 
         $this->entityManager->persist($user);

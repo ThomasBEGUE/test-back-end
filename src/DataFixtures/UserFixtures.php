@@ -22,9 +22,8 @@ class UserFixtures extends Fixture
         $user = new User();
 
         $user->setEmail('unicorn974@yopmail.com');
-        $user->setFirstname('Roget');
+        $user->setFirstname('Roger');
         $user->setLastname('JOYEUX');
-        $user->setApiToken('unicorn');
 
         $password = $this->encoder->encodePassword($user, 'password');
         $user->setPassword($password);

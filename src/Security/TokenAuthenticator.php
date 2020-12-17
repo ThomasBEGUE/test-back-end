@@ -68,7 +68,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
     
         // Return `true` to cause authentication success
         // return true;
-        return $user->getApiTokenDuration() >= $now;
+        return !empty($user->getApiToken()) && $user->getApiTokenDuration() >= $now;
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)

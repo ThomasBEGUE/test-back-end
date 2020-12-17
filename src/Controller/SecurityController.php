@@ -38,7 +38,14 @@ class SecurityController extends AbstractController
         $dateValidation = new \DateTime('now');
         $dateValidation->add(new \DateInterval('PT1H'));
         $user->setApiTokenDuration($dateValidation);
+        // random_bytes() generate secure but not unique id and uniqid() generate 'unique' but not secure id
+        // we concat both to have a token with unique part and secure part.
+        // if 16 bytes is too week we can update this number or if the methods is too slow we can use only random_bytes()
+        // with a big number and remove the uniqid() part.
+        $randomPseudoUniqueToken = bin2hex(random_bytes(16)).uniqid().bin2hex(random_bytes(16));
+        $user->setApiToken($randomPseudoUniqueToken);
 
+        // persist in database
         $entityManager->persist($user);
         $entityManager->flush();
 
